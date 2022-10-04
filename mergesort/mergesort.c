@@ -1,22 +1,11 @@
 #include "mergesort.h"
+#include <stdlib.h>
 
-void mergesort(int size, int values[]) {
-  mergesortRange(values, 0, size);
-}
 
-void mergesortRange(int values[], int startIndex, int endIndex){
-	int rangeSize = endIndex - startIndex;
-	if (rangeSize >= 2){
-		int midPoint = (startIndex + endIndex) / 2;
-		mergesortRange(values, startIndex, midPoint);
-		mergesortRange(values, midPoint, endIndex);
-		mergeRanges(values, startIndex, midPoint, endIndex);
-	}
-}
-
-void mergeRanges(int[] values, int startIndex, int midPoint, int endIndex){
+void mergeRanges(int values[], int startIndex, int midPoint, int endIndex){
 	const int rangeSize = endIndex - startIndex; 
-	destination = (int*) calloc(rangeSize, sizeOf(int));
+	int* destination;
+	destination = (int*) calloc(rangeSize, sizeof(int));
 	int firstIndex = startIndex;
 	int secondIndex = midPoint;
 	int copyIndex = 0;
@@ -46,3 +35,19 @@ void mergeRanges(int[] values, int startIndex, int midPoint, int endIndex){
 	}
 	free(destination);
 }
+
+void mergesortRange(int values[], int startIndex, int endIndex){
+	int rangeSize = endIndex - startIndex;
+	if (rangeSize >= 2){
+		int midPoint = (startIndex + endIndex) / 2;
+		mergesortRange(values, startIndex, midPoint);
+		mergesortRange(values, midPoint, endIndex);
+		mergeRanges(values, startIndex, midPoint, endIndex);
+	}
+}
+
+void mergesort(int size, int values[]) {
+  mergesortRange(values, 0, size);
+}
+
+
