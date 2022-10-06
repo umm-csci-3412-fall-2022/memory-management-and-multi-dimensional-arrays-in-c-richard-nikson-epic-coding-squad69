@@ -53,7 +53,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
         }
 	
 	mergesort(counter, temp_array);
-	for (int i = 1; i <= counter +1; i++){
+	for (int i = 1; i <= counter; i++){
 		output[i] = temp_array[i-1];
 	}
 	free(temp_array);
